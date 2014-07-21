@@ -1,0 +1,38 @@
+
+
+.card {
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	.box-sizing(border-box);
+	background-color: #fff;
+	border: 1px solid #d8d8d8;
+	border-bottom-width: 2px;
+
+	.card-more {
+		background: url(../images/sprites/arrow-down.png) no-repeat 0 0;
+		background-color: #fff;
+		cursor: pointer;
+		float: right;
+		width: 16px;
+		height: 16px;
+		margin-right: -3px;
+		margin-top: 0;
+		visibility: hidden;
+		.opacity(0.5);
+
+		&:hover {
+			.opacity(0.9);
+		}
+	}
+
+	&:hover {
+		.card-more {
+			visibility: visible;
+		}
+	}
+
+	.ui-match {
+		background: yellow;
+	}
+}
+

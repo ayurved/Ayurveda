@@ -1,0 +1,58 @@
+<div class="post-item card">
+	
+	<div class="item-image">
+		<a href="[%getEditLink()%]">
+			<img ng-src="[%content.image%]">
+		</a>
+	</div>
+
+	<div class="item-content">
+		<span class="card-more"></span>
+
+		<div class="content-head">
+			<h4 class="title">
+				<a href="[%getEditLink()%]" ng-click="">
+					<span ng-bind-html="trustedTitle" ></span>
+				</a>
+			</h4>
+		</div>
+		<div class="item-meta">
+			
+			<div class="meta-status">
+				<span class="meta">Published - [%datePublished()%]</span>
+				<div class="item-permalink">
+					<a href="[%content.url | permalink %]">[%content.url | permalink:'display' %]</a>
+				</div>
+			</div>
+
+			<div class="meta-author">
+				<div class="user-info">
+				    <div class="user-action-time">
+				        <span class="action">Created by</span> 
+				        <span class="relativetime" title="2012-03-22 00:06:09Z" >- on [%content.created_at%]</span>
+				    </div>
+				    <div class="user-avatar-32">
+				        <a href="/users/735307/arman-p">
+				        	<div class="gravatar-wrapper-32">
+				        		<img src="https://www.gravatar.com/avatar/6a843a3a40320649fde9ec20680e25ae?s=32&amp;d=identicon&amp;r=PG" alt="">
+				        	</div>
+				        </a>
+				    </div>
+				    <div class="user-details">
+				        <a href="/users/735307/arman-p">Filip Arneric</a><br>
+				        <span class="user-role">administrator</span>
+				    </div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="item-actions">
+			<a href="[%getEditLink()%]" class="btn btn-primary">Edit</a>
+			<!--<span class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Delete</span>-->
+		</div>
+		
+		
+	</div>
+
+</div>

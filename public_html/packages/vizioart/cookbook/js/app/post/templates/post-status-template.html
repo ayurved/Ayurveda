@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Publish</div>
+	<div class="panel-body">
+		<div class="form-group" ng-if="oldStatus != 'publish'">
+			<span ng-click="save('draft')" class="btn btn-default ladda-button" data-style="zoom-out" ladda="locked"><span class="ladda-label">Save draft</span></span>
+		</div>
+
+		<div class="misc-pub-section misc-pub-post-status">
+			<label for="post_status">Status:</label>
+			&nbsp;<span id="post-status-display">[%availableStatuses[status]%]</span>
+			<span class="text-muted" ng-if="oldStatus != status"> ([%availableStatuses[oldStatus]%])</span>
+			&nbsp;<span class="btn btn-default btn-xs" ng-if="oldStatus == 'publish'" ng-click="changeStatus()">Edit</span>
+			<div id="post-status-select" class="form-inline" ng-if="oldStatus == 'publish'" ng-show="!!editStatus">
+				<div class="input-group">
+					<select class="form-control input-sm" ng-model="form.newStatus" ng-options="statusKey as statusLabel for (statusKey, statusLabel) in form.statuses"></select>
+					<span class="input-group-btn">
+						<button class="btn btn-default btn-sm" type="button" ng-click="saveStatusChange()">Ok</button>
+						<button class="btn btn-default btn-sm" type="button" ng-click="cancelStatusChange()">Cancel</button>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+		<div class="misc-pub-section misc-pub-post-status" ng-show="oldStatus == 'publish' && !!createdAt">
+			<label for="post_status">Created at:</label>
+			&nbsp;<span id="post-status-display">[%dateCreatedFormated%]</span>
+			&nbsp;<span class="btn btn-default btn-xs" ng-click="changeDate()">Edit</span>
+			<div id="post-datepicker" class="form-inline" ng-show="!!editDate">
+				<div class="input-group">
+					<input type="text" class="form-control input-sm" datepicker-popup="[%dateCreatedFormat%]" ng-model="dateCreated" is-open="dateCreatedOpened" datepicker-options="dateCreatedOptions" close-text="Close" />
+					<span class="input-group-btn">
+						<span class="btn btn-default btn-sm" ng-click="dateCreatedOpen($event)"><i class="glyphicon glyphicon-calendar"></i></span>
+					</span>
+					<span class="input-group-btn">
+						<button class="btn btn-default btn-sm" type="button" ng-click="saveDateChange()">Ok</button>
+						<button class="btn btn-default btn-sm" type="button" ng-click="cancelDateChange()">Cancel</button>
+					</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div ng-switch="oldStatus">
+		
+		<div class="panel-footer" ng-switch-when="publish">
+			<span ng-click="save()" class="btn btn-primary ladda-button" data-style="expand-left" ladda="locked"><span class="ladda-label">Update</span></span>
+			<a ng-click="callDelete()" href="#" class="btn btn-link pull-right text-danger">Delete</a>
+		</div>
+		<div class="panel-footer" ng-switch-default="">
+			<span ng-click="save('publish')" class="btn btn-primary ladda-button" data-style="expand-left" ladda="locked"><span class="ladda-label">Publish</span></span>
+			<a ng-click="callDelete()" href="#" class="btn btn-link pull-right text-danger">Discard</a>
+		</div>
+	</div>
+</div>
