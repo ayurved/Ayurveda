@@ -1,0 +1,145 @@
+@import "mixins";
+@import "variables";
+
+#navigation {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+    overflow: hidden;
+}
+
+#navigation .vCenterKid {
+	height: 100%;
+}
+
+#navigation.rendered {
+	opacity: 1;
+}
+
+#button-container{
+	height:50px;
+	width:50px;
+	position:absolute;
+	right:30px;
+	top: 30px;
+	
+}
+
+.hover {
+    position: absolute;
+    background: $purple;
+    width: 100%;
+    height: 100%;
+    z-index:-1;
+    display: inline-block!important;
+}
+
+ 
+.nav-button {
+	display: inline-block;
+	height: 100%;
+	float: left;
+	outline: none;
+	cursor: pointer;
+	user-select: none;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+	position: relative;
+	width: 100%;
+	z-index: 9999999;
+}
+
+.lines {
+  @include line;
+  position: relative; 
+  margin: 0 auto;
+ 
+  &:before, &:after {
+   
+   @include line;
+    -webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+    position: absolute;
+    left: 0;
+    content: '';
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    outline: 1px solid transparent;
+  }
+  &:before { top: 250%; height:100%; width: 100%; }
+  &:after { top: -251.5%; height:100%; width: 100%; }
+}
+
+.nav-button.close-nav .lines {
+    background: transparent;
+ 
+    &:before, &:after {
+      -webkit-transform-origin: center center;
+      -moz-transform-origin: center center;
+      top: 0;
+    }
+ 
+    &:before {
+      -webkit-transform: rotate3d(0, 0, 1, 45deg);
+      -moz-transform: rotate3d(0, 0, 1, 45deg);
+    }
+    &:after {
+      -webkit-transform: rotate3d(0, 0, 1, -45deg);
+      -moz-transform: rotate3d(0, 0, 1, -45deg); 
+    }
+}
+
+.navbar {
+	background-color: $greyBlue;
+	z-index: 999999;
+	@include transform(translateZ(0));
+}
+
+.logo{
+	position: absolute;
+	z-index: 9999999;
+	left: 30px;
+	top: 30px;
+	height: 14%;
+}
+
+
+//navigation overlay
+#navigation-container{
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background: $gold;
+	background: rgba(162,125,34, 0.4);
+	
+	display:none;
+	z-index: 999999;
+	
+	.linkHolder{
+		position: relative;
+		@include transform(translateY(40px));
+		opacity:0;
+	}
+	
+	a.links{
+		color: white;
+		display: block;
+		text-align: center;
+		padding: 2% 0;
+		font-size: inherit;
+		font-family: 'HeimatBold';
+	}
+	
+	a.links:hover{
+/* 		color: $gold; */
+		/*
+background: $gold;
+		@include transition( all .1s linear!important);
+*/
+	}
+}
+

@@ -1,0 +1,44 @@
+@import "mixins";
+@import "variables";
+
+#content{
+	
+	position: relative;
+	left: 29%;
+	
+	.vCenter{
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 605px;
+	}
+}
+
+.square{
+	background-color: rgba(172,108,15, .3);
+	min-height: 80px;
+	min-width: 80px;
+	float: left;
+	text-align: center;
+	position: relative;
+	width: 42%;
+	z-index: 999999;
+}
+
+.square:before {
+	content: "";
+	display: block;
+	padding-top: 100%;
+}
+
+.square:hover{
+	background-color: rgba(172,108,15, .8);
+}
+
+.round{
+	@include border-radius(50%);
+}
+
+h1, p{
+	color:white;
+}
