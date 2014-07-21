@@ -1,26 +1,14 @@
-# MAINTENANCE-PAGE REDIRECT
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1 
-    RewriteCond %{REMOTE_ADDR} !^24\.135\.58\.38
-    RewriteCond %{REQUEST_URI} !/maintenance.html$ [NC]
-    RewriteCond %{REQUEST_URI} !\.(jpe?g?|png|gif) [NC]
-    RewriteRule .* /maintenance.html [R=302,L]
-</IfModule>
-
-
 <IfModule mod_rewrite.c>
     
-    #<IfModule mod_negotiation.c>
-        #Options -MultiViews
-    #</IfModule>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
 
     RewriteEngine On
-
     RewriteBase /
     
-    RewriteCond %{HTTP_HOST} ^dock.cz$
-    RewriteRule (.*) http://www.dock.cz/$1 [R=301,L]
+    RewriteCond %{HTTP_HOST} ^ayurvedabeauty.cz$
+    RewriteRule (.*) http://www.ayurvedabeauty.cz/$1 [R=301,L]
 
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]

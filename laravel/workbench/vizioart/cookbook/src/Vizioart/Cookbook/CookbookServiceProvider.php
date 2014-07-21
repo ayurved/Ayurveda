@@ -40,7 +40,8 @@ class CookbookServiceProvider extends ServiceProvider {
 
 		// Handlebars Templates
 		// --------------------------------------------------------------
-		View::addNamespace('hbs', public_path() . '/templates');
+		$frontend_templates_path = public_path() . DIRECTORY_SEPARATOR . $this->app['config']->get('cookbook::cookbook.front_templates');
+		View::addNamespace('hbs', $frontend_templates_path);
 
 
 		include __DIR__.'/../../filters.php';

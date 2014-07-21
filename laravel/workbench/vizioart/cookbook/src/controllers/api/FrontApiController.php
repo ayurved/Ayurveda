@@ -19,8 +19,6 @@ use Vizioart\Cookbook\Models\PostModel as Post;
 use Vizioart\Cookbook\Models\GalleryModel as Gallery;
 use Vizioart\Cookbook\Models\MenuModel as Menu;
 
-use Navigator\Repositories\Favourites\FavouriteRepository;
-
 /**
  * 
  */
@@ -126,14 +124,7 @@ class FrontApiController extends BaseController {
         // Get Languages
         // -----------------------------------------------------------------
         $language_model = new Langauge();
-        $languages = $language_model->get();
-
-        // Favorites
-        // -----------------------------------------------------------------
-        $app = App::getFacadeRoot();
-        $favs_repo = $app->make('Navigator\Repositories\Favourites\FavouriteRepositoryInterface');
-        $favs = $favs_repo->all();
-        
+        $languages = $language_model->get();      
 
         $res = array(
             'routes' => $routes,
@@ -143,7 +134,6 @@ class FrontApiController extends BaseController {
                 'ru' => $translation_arr_ru,
             ),
             'languages' => $languages,
-            'favorites' => $favs
         ); 
 
         return Response::json($res, 200);

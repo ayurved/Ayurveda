@@ -24,35 +24,9 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-// $env = $app->detectEnvironment(array(
-//     'local' => array('PlaxiMaxi-PC'),
-// ));
-
-$env = $app->detectEnvironment(function() {
-
-	$environments = array(
-		'local' => array (
-			'localhost',
-			'dock.dev',
-			'*.dev',
-		),
-	);
-	// default env 
-	$environment = 'production';
-
-	$server_name = (isset($_SERVER['SERVER_NAME']))?$_SERVER['SERVER_NAME']:false;
-	if ($server_name){
-		foreach ($environments as $env => $hosts){
-			foreach ($hosts as $host) {
-				if( str_is($host, $server_name)){
-					return $env;
-				}
-			}
-		}
-	}
-
-    return $environment;
-});
+$env = $app->detectEnvironment(array(
+    'local' => array('velja-PC'),
+));
 
 /*
 |--------------------------------------------------------------------------

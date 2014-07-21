@@ -14,7 +14,7 @@ return array(
 	*/
 
 	'paths' => array(
-		__DIR__.'/../../../laravel/templates',
+		__DIR__.'/../../../public_html/templates',
 		__DIR__.'/../views',
 	),
 

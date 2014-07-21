@@ -1,54 +1,5 @@
 <?php
 
-// -------------------------------------------------
-// TEST routes
-// -------------------------------------------------
-Route::group(array('prefix' => 'repo'), function(){
-
-	Route::get('lang', function(){
-		$app = App::getFacadeRoot();
-		$lang_repo = $app->make('Vizioart\Cookbook\Repositories\Language\LanguageRepositoryInterface');
-		$langs = $lang_repo->all();
-		$res = array(
-			'languages' => $langs
-		);
-		return Response::json($res, 200);
-	});
-
-	Route::get('lang/code/{code?}', function($code = null){
-		if (empty($code)){
-			$code = 'en';
-		}
-		$app = App::getFacadeRoot();
-		$lang_repo = $app->make('Vizioart\Cookbook\Repositories\Language\LanguageRepositoryInterface');
-		$lang = $lang_repo->getByCode($code);
-		$res = array(
-			'method' => 'getByCode',
-			'code' => $code,
-			'lang' => $lang
-		);
-		return Response::json($res, 200);
-	});
-
-	Route::get('lang/{id?}', function($id = null){
-		if (empty($id)){
-			$id = 1;
-		}
-		$app = App::getFacadeRoot();
-		$lang_repo = $app->make('Vizioart\Cookbook\Repositories\Language\LanguageRepositoryInterface');
-		$lang = $lang_repo->getById($id);
-		$res = array(
-			'method' => 'getById',
-			'id' => $id,
-			'lang' => $lang
-		);
-		return Response::json($res, 200);
-	});
-
-
-});
-
-
 
 // -------------------------------------------------
 // FRONTEND API routes
@@ -82,7 +33,7 @@ Route::group(array('prefix' => 'account'), function() {
 	// temp
 	App::setLocale('en');
 	
-	Route::get( 'create',                 'Vizioart\Cookbook\AuthController@create');
+	//Route::get( 'create',                 'Vizioart\Cookbook\AuthController@create');
 	Route::post('/',                      'Vizioart\Cookbook\AuthController@store');
 	Route::get( 'login',                  'Vizioart\Cookbook\AuthController@login');
 	Route::post('login',                  'Vizioart\Cookbook\AuthController@do_login');
