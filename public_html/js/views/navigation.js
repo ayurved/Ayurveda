@@ -53,14 +53,13 @@ define(['app',
                     self.data = {};
                     self.data.desktop = navigationData[0];
                     
-                   
-                    
-		            //compile template
+   		            //compile template
 		            var template = Handlebars.compile(self.template);
 		            self.content = template({
 		                data: self.data,
-		                lang: App.lang
+		                lang: App.options.locale
 		            });
+		            
 		        	self.$el.html(self.content);   	
 		        	self.afterRender();
 		        	//self.openNav();
