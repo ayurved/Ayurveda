@@ -9,11 +9,16 @@
 	height:100%;
 	background: $gold;
 	background: rgba(162,125,34, 0.4);
+	line-height: 100%;
 
 	z-index: 999999;
 	
+	padding-top: 5%;
+	padding-bottom: 5%;
+	
 	.linkHolder{
 		position: relative;
+		height:11.14%;
 		/*
 position: relative;
 		@include transform(translateY(40px));

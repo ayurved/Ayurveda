@@ -2,13 +2,22 @@
 	<div class='vCenter'>
 		<div class='vCenterKid'>
 			<div id='content' class="square round transition">
-				<div class='vCenter fittext textContainer'  data-fit='38' data-min='8' data-max='100'>
+				<div class='vCenter fittext textContainer'  data-fit='32' data-min='8' data-max='100'>
 					<div class='vCenterKid padding'>
 						{{#if data.title}}
 						<h1>{{{data.title}}}</h1>
 						{{/if}}
 						
 						{{{data.content}}}
+						
+						<span class='duration'>
+							{{data.meta.ms_duration}}
+						</span>
+						
+						<span class='price'>
+							{{data.meta.ms_price}}
+						</span>
+						
 					</div>
 				</div>
 			</div>

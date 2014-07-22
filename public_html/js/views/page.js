@@ -55,7 +55,7 @@ define(['app',
 		
 		render: function(callback) {
         	var self = this;    
-        		
+        	
         	//compile template
             
             self.content = self.template({

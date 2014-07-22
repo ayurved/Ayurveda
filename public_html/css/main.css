@@ -7606,7 +7606,7 @@ td.visible-print {
   z-index: 9999999;
   left: 30px;
   top: 30px;
-  height: 14%;
+  height: 18%;
 }
 
 /* line 110, ../sass/_navigation.scss */
@@ -7810,7 +7810,7 @@ td.visible-print {
   background-color: rgba(172, 108, 15, 0.8);
 }
 
-/* line 38, ../sass/_page.scss */
+/* line 39, ../sass/_page.scss */
 .round {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -7819,7 +7819,7 @@ td.visible-print {
   border-radius: 50%;
 }
 
-/* line 42, ../sass/_page.scss */
+/* line 43, ../sass/_page.scss */
 h1, p {
   color: white;
 }
@@ -7833,18 +7833,22 @@ h1, p {
   height: 100%;
   background: #ac6c0f;
   background: rgba(162, 125, 34, 0.4);
+  line-height: 100%;
   z-index: 999999;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
-/* line 15, ../sass/_massages.scss */
+/* line 19, ../sass/_massages.scss */
 #massages-container .linkHolder {
   position: relative;
+  height: 11.14%;
   		/*
   position: relative;
   		@include transform(translateY(40px));
   		opacity:0;
   */
 }
-/* line 24, ../sass/_massages.scss */
+/* line 29, ../sass/_massages.scss */
 #massages-container a.links {
   color: white;
   display: block;
@@ -7853,7 +7857,7 @@ h1, p {
   font-size: inherit;
   font-family: 'HeimatBold';
 }
-/* line 33, ../sass/_massages.scss */
+/* line 38, ../sass/_massages.scss */
 #massages-container a.links:hover {
   /* 		color: $gold; */
   		/*
