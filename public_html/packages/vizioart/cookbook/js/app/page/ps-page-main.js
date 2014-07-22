@@ -64,6 +64,7 @@ require([
 
 	console.log('require - scripts loaded ');
 	
+	
 	var $appContainer = $('#app-container');
 	angular.bootstrap($appContainer, ['app']);
 })
