@@ -125,17 +125,10 @@ class FrontController extends BaseController {
 
         // @CHANGE !!!
         // --------------------------------------
-        if ('navigator' == $post_view){
-        	return $this->renderNavigatorPage($post, $params);
-        }
-
         if ('gallery' == $post_view && !empty($params)){
         	return $this->renderGalleryItemPage($post, $params);
         }
 
-        if ('list' == $post_view || 'phase1' == $post_view || 'penthouse' == $post_view){
-            return $this->renderList($post, $params);
-        }
         // --------------------------------------
 
         $view_data = array();
@@ -213,33 +206,7 @@ class FrontController extends BaseController {
         return View::make('layouts.application', $view_data);
     }
 
-    protected function renderNavigatorPage($post, $params = array()){
-
-
-        $view_data = array();
-
-        $add_data = array(
-            'pageParams' => $params,
-        );
-        
-        // --------------------------------------
-        $meta_data = $this->setMetaData($post);
-        $view_data = array_merge($view_data, $meta_data);
-
-        // navigation
-        // --------------------------------------
-        $view_data['navigation'] = $this->renderNavigation();
-
-        // --------------------------------------
-        $template_data = $this->setPageData($post, $add_data);
-
-        // page template (handlebars)
-        $content = View::make('hbs::navigator', $template_data);
-        $view_data['content'] = $content;
-
-        return View::make('layouts.application', $view_data);
-    }
-
+ 
     protected function renderHomePage(){
     
         $view_data = array();
@@ -268,50 +235,6 @@ class FrontController extends BaseController {
         return View::make('layouts.application', $view_data);
     }
 
-    protected function renderList($post, $params = array()){
-    
-        $view_data = array();
-        $post_view = $post->view;
-        $add_data = array();
-
-        // ------------------------------------------------------------
-        // @CHANGE 
-        // ------------------------------------------------------------
-        switch ($post_view) {
-            case 'phase1':
-                $list_name = 'marinaview';
-                break;
-            case 'penthouse':
-                $list_name = 'penthouses';
-                break;
-            case 'list':
-            default:
-                $list_name = 'riverwatch';
-                break;
-        }
-        // ------------------------------------------------------------
-
-        $add_data = array(
-            'list_name' => $list_name,
-        );
-
-        // ------------------------------------------------------------
-        $meta_data = $this->setMetaData($post);
-        $view_data = array_merge($view_data, $meta_data);
-
-        // navigation
-        // ------------------------------------------------------------
-        $view_data['navigation'] = $this->renderNavigation();
-
-        // ------------------------------------------------------------
-        $template_data = $this->setPageData($post, $add_data);
-
-        // page template (handlebars)
-        $content = View::make('hbs::list', $template_data);
-        $view_data['content'] = $content;
-
-        return View::make('layouts.application', $view_data);
-    }
     
     
     // ------------------------------------------------------------------------------------
@@ -320,16 +243,16 @@ class FrontController extends BaseController {
 
         // default meta
         $default_meta = array(
-            'meta_title' => 'Dock by Crestyl',
-            'meta_description' => 'Dock by Crestyl',
+            'meta_title' => 'Ayurveda Beauty',
+            'meta_description' => 'Ayurveda Beauty',
         );
 
         $default_og_meta = array(
-            'og_title' => 'Dock by Crestyl',
-            'og_description' => 'Dock by Crestyl',
+            'og_title' => 'Ayurveda Beauty',
+            'og_description' => 'Ayurveda Beauty',
             'og_type' => 'website',
-            'og_site_name' => 'Dock',
-            'og_image' => 'http://www.dock.cz/img/ogLogo.jpg',
+            'og_site_name' => 'Ayurveda Beauty',
+            'og_image' => 'http://www.ayurvedabeauty.cz/img/ogLogo.jpg',
             'og_locale' => 'cs_CZ',
         );
 
@@ -339,8 +262,7 @@ class FrontController extends BaseController {
         // helper array
         $og_locale_arr = array(
             'cs' => 'cs_CZ',
-            'en' => 'en_EN',
-            'ru' => 'ru_RU',
+            'en' => 'en_EN'
         );
 
         if ($post){
@@ -417,9 +339,9 @@ class FrontController extends BaseController {
     // ------------------------------------------------------------------------------------
 
     private function createTitle($page_title = ''){
-        $title = 'Dock by Crestyl';
+        $title = 'Ayurveda Beauty';
         if (!empty($page_title)){
-            $title = 'Dock - ' . $page_title;
+            $title = 'Ayurveda Beauty - ' . $page_title;
         }
         return $title;
     }
@@ -436,8 +358,7 @@ class FrontController extends BaseController {
     protected function get_site_locales(){
         return array(
             'cs', 
-            'en',
-            'ru'
+            'en'
         );
     }
 

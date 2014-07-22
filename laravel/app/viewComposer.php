@@ -32,6 +32,7 @@ View::composer('hbs::*', function($view) {
 // all templates
 View::composer('hbs::navigation', function($view) {
 
+/*
 	$routes = $view->offsetGet('data');
 
 	$data = new stdClass;
@@ -42,6 +43,7 @@ View::composer('hbs::navigation', function($view) {
 		'data' => $data,
 	));
 
+*/
 });
 
 

@@ -765,8 +765,7 @@ class PostModel extends PostDBModel {
 	private static function get_lang_by_code($code){
         $language = array(
             'cs' => 1,
-            'en' => 2,
-            'ru' => 2,
+            'en' => 2
         );
         if (array_key_exists($code, $language)){
             return $language[$code];
@@ -779,8 +778,7 @@ class PostModel extends PostDBModel {
 	private static function get_lang_by_id($id){
         $language = array(
             1 => 'cs',
-            2 => 'en',
-            3 => 'ru',
+            2 => 'en'
         );
         if (array_key_exists($id, $language)){
             return $language[$id];
