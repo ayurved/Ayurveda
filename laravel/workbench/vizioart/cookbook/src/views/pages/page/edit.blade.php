@@ -61,6 +61,24 @@
 						</div>
 					</div>
 
+					<div class="panel panel-default">
+						<div class="panel-heading">Massage fields</div>
+						<div class="panel-body form-horizontal">
+							<div class="form-group">
+								<label for="meta-ms-duration" class="col-sm-2 control-label">Duration:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="meta-ms-duration" placeholder="00:00" ng-model="Page.form.activeContent.meta.ms_duration">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="meta-ms-price" class="col-sm-2 control-label">Price:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="meta-ms-price" placeholder="0.00" ng-model="Page.form.activeContent.meta.ms_price">
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div gallerymanager model="Page.Gallery"></div>
 
 				</div>
