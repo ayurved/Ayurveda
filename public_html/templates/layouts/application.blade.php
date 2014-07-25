@@ -69,7 +69,7 @@ Filip Arneric
 
 			
 		<!-- Navigation -->
-		<div id='navigation'><!-- {{ $navigation }} --></div>
+		<div id='navigation'></div>
 
 		<!-- Page -->
 		<div id='main'></div>

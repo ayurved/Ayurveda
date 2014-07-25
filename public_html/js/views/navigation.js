@@ -33,16 +33,21 @@ define(['app',
 	  			y: top
 	  		});				
 		},
-		
-		render: function(){
-			
+	
+	    
+	    setActiveNav: function(e){
+		  	  var $selected = $('#menu .links').removeClass("activeItem").filter(function() {  return $(this).data("page") == App.pageName });
+		  	  $selected.addClass("activeItem");
+	    },
+	    
+	    renderTemplate: function(){
+	    
 	    	var self = this;
 	    	//Define the collection  	
 		  	App.Collections.navigation = Backbone.Collection.extend({
-		        url: absurl + "/api/menu/" + App.lang
+		        url: absurl + "/api/menu/" + App.options.locale
 		    });
-		    	            
-		    	      
+		    	                	      
 		    self.collection = new App.Collections.navigation;
 		    
 		    return self.collection.fetch({
@@ -54,11 +59,13 @@ define(['app',
                     self.data.desktop = navigationData[0];
                     
    		            //compile template
-		            var template = Handlebars.compile(self.template);
-		            self.content = template({
+		            self.content = self.template({
 		                data: self.data,
 		                lang: App.options.locale
 		            });
+		            
+		            
+		            console.log(self.data);
 		            
 		        	self.$el.html(self.content);   	
 		        	self.afterRender();
@@ -66,12 +73,10 @@ define(['app',
 		        	                   
                 }
             });
-	    },
-	    
-	    setActiveNav: function(e){
-		  	  var $selected = $('#menu .links').removeClass("activeItem").filter(function() {  return $(this).data("page") == App.pageName });
-		  	  $selected.addClass("activeItem");
-	    },
+
+		    
+	    },	
+	   
 	    
 /*
 	    closeNav: function(){
@@ -124,36 +129,11 @@ define(['app',
 	  	
 	  	beforeRender: function(){
 		  	
-		  	var self = this;
-	    	//Define the collection  	
-		  	App.Collections.navigation = Backbone.Collection.extend({
-		        url: absurl + "/api/menu/" + App.options.locale
-		    });	    	      
-		          
-		    	      
-		    self.collection = new App.Collections.navigation;
-		    
-		    return self.collection.fetch({
-                reset: true,
-                success: function() {
-                    
-                    var navigationData = self.collection.toJSON();
-                    self.data = {};
-                    self.data.desktop = navigationData[0];
-                    
-                    console.log("sd",self.data);
-                }
-            });
-
-		  	
-		  	
 	  	},
 	  	
 	  	afterRender: function(){
 		  	var self = this;
-			
-			console.log("sd",self.data);
-			
+
 			//show menu links animation		              
         	self.tlShowMenuLinks = new TimelineMax({
         		paused: true,

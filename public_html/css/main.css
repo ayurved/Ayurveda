@@ -7824,6 +7824,12 @@ h1, p {
   color: white;
 }
 
+/* line 47, ../sass/_page.scss */
+.icon {
+  height: 6%;
+  padding: 2%;
+}
+
 /* line 4, ../sass/_massages.scss */
 #massages-container {
   position: relative;

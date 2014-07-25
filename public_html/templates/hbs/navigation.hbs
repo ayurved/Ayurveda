@@ -14,27 +14,16 @@
 		<div class='vCenterKid'>
 		
 			<div class='hiddenOverflow relative perspective'>
-								
-				<div data-slide='home' class='linkHolder' href='#'>
+			
+				{{#each data.desktop.items}}
+				<div data-slide='home' class='linkHolder'>
+					{{#if_eq @index compare='0'}}
 					<div class='hover'></div>
-					<a href='{{baseUrl}}/cs' class='links'>Home</a>
+					{{/if_eq}}
+					<a href='{{baseUrl}}/{{this.url}}' class='links'>{{this.label}}</a>
 				</div>
+				{{/each}}
 				
-				<div data-slide='about' class='linkHolder' href='#'>
-					<a href='{{baseUrl}}/cs/about' class='links'>About us</a>
-				</div>
-				
-				<div data-slide='massages' class='linkHolder' href='#'>
-					<a href='{{baseUrl}}/cs/massages' class='links'>Massages</a>
-				</div>
-				
-				<div data-slide='master' class='linkHolder' href='#'>
-					<a href='{{baseUrl}}/cs/master' class='links'>Master</a>
-				</div>
-				
-				<div data-slide='contact' class='linkHolder' href='#'>
-					<a href='{{baseUrl}}/cs/contact' class='links'>Contact</a>
-				</div>
 				
 			</div>
 			

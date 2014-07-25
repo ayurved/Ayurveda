@@ -66,7 +66,6 @@ define(['app',
         	var self = this;    
         		
         	//compile template
-            console.log(App.view.dataCollection[0].page);
             self.content = self.template({
             	data: App.view.dataCollection[0].page
             }); 

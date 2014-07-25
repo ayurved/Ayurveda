@@ -10,13 +10,23 @@
 						
 						{{{data.content}}}
 						
+						{{#if data.meta.ms_duration}}
 						<span class='duration'>
-							{{data.meta.ms_duration}}
+							<img src='{{baseUrl}}/img/icons/duration_wht.svg' class='icon' />
+							<!--[if lte IE 9]>
+								<img class='icon' src="{{baseUrl}}/img/icons/duration_wht.png" alt="icon" />
+							<![endif]-->
+							<span class='block'>{{data.meta.ms_duration}}</span>
 						</span>
 						
 						<span class='price'>
-							{{data.meta.ms_price}}
+							<img src='{{baseUrl}}/img/icons/money_wht.svg' class='icon' />
+							<!--[if lte IE 9]>
+								<img class='icon' src="{{baseUrl}}/img/icons/money_wht.png" alt="icon" />
+							<![endif]-->
+							<span class='block'>{{data.meta.ms_price}}</span>
 						</span>
+						{{/if}}
 						
 					</div>
 				</div>
