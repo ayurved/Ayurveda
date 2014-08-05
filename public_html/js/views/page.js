@@ -43,6 +43,9 @@ define(['app',
 			$.each(App.segments, function(key, value){
 				url += value + "/";
 			});
+			
+			url = url.replace(/\/+$/,'');
+			
 			return url;
 			
 		},
