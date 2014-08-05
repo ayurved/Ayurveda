@@ -10,6 +10,5 @@ Desktop.ini
 # logs
 *.log
 
-/www/.sass-cache
-/www/js/app.min.js
-crestyl/app/config/local/database.php
+/public_html/.sass-cache
+/public_html/js/app.min.js

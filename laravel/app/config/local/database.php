@@ -27,9 +27,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'ayurveda',
+			'database'  => 'kitchen_ayurveda',
 			'username'  => 'root',
-			'password'  => 'selasije',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',
 			'prefix'    => '',
