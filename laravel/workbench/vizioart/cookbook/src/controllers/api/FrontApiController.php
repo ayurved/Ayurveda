@@ -126,6 +126,13 @@ class FrontApiController extends BaseController {
         $language_model = new Langauge();
         $languages = $language_model->get();      
 
+        // Get Featured Images 
+        // -----------------------------------------------------------------
+        $post_model = new Post();
+        $f_imgs = $post_model->get_all_featured_imgs();
+
+
+
         $res = array(
             'routes' => $routes,
             'translations' => array(
@@ -134,6 +141,7 @@ class FrontApiController extends BaseController {
                 'ru' => $translation_arr_ru,
             ),
             'languages' => $languages,
+            'images' => $f_imgs,
         ); 
 
         return Response::json($res, 200);

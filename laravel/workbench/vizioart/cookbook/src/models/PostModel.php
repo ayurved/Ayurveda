@@ -717,8 +717,14 @@ class PostModel extends PostDBModel {
             'post_contents.id as content_id',
             'posts.type as type',
             'post_contents.language_id as language_id',
+            'post_contents.url as url',
             'post_contents.name as name'
         );
+
+        $query->with('featured_image.file')
+        	  ->where('posts.status', '=', 'publish')
+        	  ->where('post_contents.status', '=', 'publish')
+        	  ->has('featured_image');
 
         $routes = $query->get();
 
