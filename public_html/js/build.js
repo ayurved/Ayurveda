@@ -1,9 +1,10 @@
 ({
-    baseUrl: '/Users/filip/Sites/dock/www/js',
+    baseUrl: '/Users/filip/Sites/Ayurveda/public_html/js',
     paths: {
     	'jquery': 'vendor/jquery.min',
         'underscore': 'vendor/underscore',
         'backbone': 'vendor/backbone',
+        'layoutmanager': 'vendor/backbone.layoutmanager',
         'handlebars': 'vendor/handlebars-1.3',
         'text': 'vendor/text',
         'async': 'vendor/async', 
@@ -13,23 +14,22 @@
         'smartresize': 'libs/smartresize',
         'datatables': 'libs/jquery.dataTables',
         'tweenmax': "libs/TweenMax.min",
+        'gsap': "libs/jquery.gsap.min",
+        
         'imgLiquid' : 'libs/imgLiquid-min',
         'modernizr' : 'vendor/modernizr',
         'backstretch' : 'libs/jquery.backstretch.min',
         'nicescroll' : 'libs/jquery.nicescroll.min',
         'royal' : 'libs/jquery.royalslider.min',
-/*         'cssPlugin' : 'libs/CSSPlugin', */
         'easing' : 'libs/masterslider/jquery.easing.min',
         'fittext' : 'libs/jquery.fittext',
-        'raphael' : 'libs/raphael',
-        'three' : 'libs/Three',
-        'tween' : 'libs/Tween',
-        'infobox': 'libs/infobox.min',
         'fastclick': 'libs/fastclick',
         'pxloader': 'libs/pxloader/pxloader',
         'pxloadertags': 'libs/pxloader/pxloadertags',
         'pxloaderimage': 'libs/pxloader/pxloaderimage',
-        'pxloadervideo': 'libs/pxloader/pxloadervideo'
+        'pxloadervideo': 'libs/pxloader/pxloadervideo',
+        'stackblur': 'libs/StackBlur',
+        'hoverDir': 'libs/jquery.hoverdir'
     },
     name: "load",
     preserveLicenseComments: false,

@@ -26,9 +26,10 @@ define(['app',
 				index = target.index(),
 				top = index * target.height(),
 				slide = target.data("slide");
+							
 			
 			self.changeBlured(slide, true);
-			
+						
 			TweenMax.to($(".hover"), .3, { 
 	  			y: top
 	  		});				

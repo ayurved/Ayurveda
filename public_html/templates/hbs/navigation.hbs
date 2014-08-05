@@ -16,7 +16,7 @@
 			<div class='hiddenOverflow relative perspective'>
 			
 				{{#each data.desktop.items}}
-				<div data-slide='home' class='linkHolder'>
+				<div data-slide='{{this.slug}}' class='linkHolder'>
 					{{#if_eq @index compare='0'}}
 					<div class='hover'></div>
 					{{/if_eq}}

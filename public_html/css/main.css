@@ -7847,7 +7847,7 @@ h1, p {
 /* line 19, ../sass/_massages.scss */
 #massages-container .linkHolder {
   position: relative;
-  height: 11.14%;
+  height: 10%;
   		/*
   position: relative;
   		@include transform(translateY(40px));
@@ -7859,7 +7859,7 @@ h1, p {
   color: white;
   display: block;
   text-align: center;
-  padding: 2% 0;
+  padding: 0;
   font-size: inherit;
   font-family: 'HeimatBold';
 }
