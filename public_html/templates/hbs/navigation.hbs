@@ -14,28 +14,16 @@
 		<div class='vCenterKid'>
 		
 			<div class='hiddenOverflow relative perspective'>
-				
-				
-				<div data-slide='home' class='linkHolder' href='#'>
+			
+				{{#each data.desktop.items}}
+				<div data-slide='{{this.slug}}' class='linkHolder'>
+					{{#if_eq @index compare='0'}}
 					<div class='hover'></div>
-					<a href='{{baseUrl}}/{{lang}}' class='links'>Home</a>
+					{{/if_eq}}
+					<a href='{{baseUrl}}/{{this.url}}' class='links'>{{this.label}}</a>
 				</div>
+				{{/each}}
 				
-				<div data-slide='about' class='linkHolder' href='#'>
-					<a href='{{baseUrl}}/{{lang}}/about' class='links'>About us</a>
-				</div>
-				
-				<div data-slide='massages' class='linkHolder' href='#'>
-					<a href='{{baseUrl}}/{{lang}}/massages' class='links'>Massages</a>
-				</div>
-				
-				<div data-slide='master' class='linkHolder' href='#'>
-					<a href='{{baseUrl}}/{{lang}}/master' class='links'>Master</a>
-				</div>
-				
-				<div data-slide='contact' class='linkHolder' href='#'>
-					<a href='{{baseUrl}}/{{lang}}/contact' class='links'>Contact</a>
-				</div>
 				
 			</div>
 			
@@ -44,3 +32,6 @@
 </div>
 
 <img class='logo' src="{{baseUrl}}/img/logo.svg" alt="Ayurveda" />
+<!--[if lte IE 9]>
+	<img class='logo' src="{{baseUrl}}/img/logo.png" alt="Ayurveda" />
+<![endif]-->

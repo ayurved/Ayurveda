@@ -44,7 +44,7 @@ define(['jquery',
 
     App.vent = _.extend({}, Backbone.Events);
    
-    if(App.ie) $('html').addClass('ie');
+   	if(App.ie) $('html').addClass('ie');
     if(isIE11) $('html').addClass('ie11');
     
     console.log("%cDeveloped by Filip Arnerić", "color: #3d3b46; font-size: 18px");  

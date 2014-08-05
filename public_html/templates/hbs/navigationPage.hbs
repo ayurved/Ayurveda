@@ -1,20 +1,14 @@
-<div id='massages-container' class='fullHeight fittext' data-min='2' data-max='120' data-fit='24'>
-	<div class='vCenter'>
-		<div class='vCenterKid'>
-		
-			<div class='hiddenOverflow relative perspective'>
-				
-				{{#each data.children}}
-				<div data-slide='{{this.name}}' class='linkHolder' href='#'>
-					{{#if_eq @index compare='0'}}
-						<div class='hover'></div>
-					{{/if_eq}}
-					<a href='{{this.permalink}}' class='links'>{{this.title}}</a>
-				</div>
-				{{/each}}
-				
+<div id='massages-container' class='fullHeight fittext' data-min='2' data-max='120' data-fit='46'>
+	{{#each data.children}}
+	<div data-slide='{{this.name}}' class='linkHolder' href='#'>
+		{{#if_eq @index compare='0'}}
+			<div class='hover'></div>
+		{{/if_eq}}
+		<div class='vCenter'>
+			<div class='vCenterKid'>
+				<a href='{{this.permalink}}' class='links'>{{this.title}}</a>
 			</div>
-			
 		</div>
 	</div>
+	{{/each}}
 </div>

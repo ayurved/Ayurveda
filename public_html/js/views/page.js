@@ -55,9 +55,8 @@ define(['app',
 		
 		render: function(callback) {
         	var self = this;    
-        		
-        	//compile template
-            
+        	
+        	//compile template         
             self.content = self.template({
             	data: App.view.dataCollection[0].page
             }); 

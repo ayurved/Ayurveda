@@ -26,18 +26,58 @@ define(['app',
 				index = target.index(),
 				top = index * target.height(),
 				slide = target.data("slide");
+							
 			
 			self.changeBlured(slide, true);
-			
+						
 			TweenMax.to($(".hover"), .3, { 
 	  			y: top
 	  		});				
 		},
+	
 	    
 	    setActiveNav: function(e){
 		  	  var $selected = $('#menu .links').removeClass("activeItem").filter(function() {  return $(this).data("page") == App.pageName });
 		  	  $selected.addClass("activeItem");
 	    },
+	    
+	    renderTemplate: function(){
+	    
+	    	var self = this;
+	    	//Define the collection  	
+		  	App.Collections.navigation = Backbone.Collection.extend({
+		        url: absurl + "/api/menu/" + App.options.locale
+		    });
+		    	                	      
+		    self.collection = new App.Collections.navigation;
+		    
+		    return self.collection.fetch({
+                reset: true,
+                success: function() {
+                    
+                    var navigationData = self.collection.toJSON();
+                    self.data = {};
+                    self.data.desktop = navigationData[0];
+                    
+   		            //compile template
+		            self.content = self.template({
+		                data: self.data,
+		                lang: App.options.locale
+		            });
+		            
+		            
+		            console.log(self.data);
+		            
+		        	self.$el.html(self.content);   	
+		        	self.afterRender();
+		        	//self.openNav();
+		        	                   
+                }
+            });
+
+		    
+	    },	
+	   
 	    
 /*
 	    closeNav: function(){
@@ -88,9 +128,13 @@ define(['app',
 
 	  	},
 	  	
+	  	beforeRender: function(){
+		  	
+	  	},
+	  	
 	  	afterRender: function(){
 		  	var self = this;
-			
+
 			//show menu links animation		              
         	self.tlShowMenuLinks = new TimelineMax({
         		paused: true,
@@ -107,7 +151,9 @@ define(['app',
 	    	    
 	    initialize: function(){
 	    	var self = this;	
-	    	self.afterRender();
+	    	/* self.afterRender(); */
+	    	
+	    	//self.render();
    		     					
 	    }
 	    

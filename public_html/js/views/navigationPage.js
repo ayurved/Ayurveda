@@ -26,7 +26,7 @@ define(['app',
 				slide = target.data("slide");
 			
 			App.Navigation.changeBlured(slide, true);
-			
+		
 			TweenMax.to($(".hover"), .3, { 
 	  			y: top
 	  		});	
@@ -60,13 +60,17 @@ define(['app',
 			var self = this;
 			self.contentWidth = self.$("#content").width();
 			self.$(".textContainer").css("height",self.contentWidth);
+			/*
+
+			var linkHeight =$("#massages-container").height() / 10;
+			$(".linkHolder").css("height", linkHeight);
+*/
 		},
 		
 		render: function(callback) {
         	var self = this;    
         		
         	//compile template
-            console.log(App.view.dataCollection[0].page);
             self.content = self.template({
             	data: App.view.dataCollection[0].page
             }); 
