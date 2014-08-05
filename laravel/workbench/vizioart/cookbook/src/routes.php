@@ -1,5 +1,19 @@
 <?php
 
+Route::get('fiat', function(){
+
+	$post_model = new \Vizioart\Cookbook\Models\PostModel;
+
+	$imgs = $post_model->get_all_featured_imgs();
+
+
+	return Response::json($imgs, 200);
+
+
+
+
+});
+
 
 // -------------------------------------------------
 // FRONTEND API routes

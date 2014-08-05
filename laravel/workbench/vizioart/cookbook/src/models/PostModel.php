@@ -704,6 +704,31 @@ class PostModel extends PostDBModel {
 
     }
 
+
+	public function get_all_featured_imgs(){
+
+		$locale = \App::getLocale();
+        
+        $query = self::query();
+
+        $query->join('post_contents', 'posts.id', '=', 'post_contents.post_id');
+        $query->select(
+            'posts.id as id',
+            'post_contents.id as content_id',
+            'posts.type as type',
+            'post_contents.language_id as language_id',
+            'post_contents.name as name'
+        );
+
+        $routes = $query->get();
+
+        if(empty($routes)){
+            return false;
+        }
+        return $routes;
+	}
+
+
     //----------------------------------------------------------------
 
     private function get_post_meta_merged($post){

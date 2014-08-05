@@ -241,19 +241,25 @@ class FrontController extends BaseController {
 
     protected function setMetaData($post = null){
 
+        // @TO_DO
+        // get meta from config 
+        // ---------------------------------------------
+
+
+
         // default meta
         $default_meta = array(
-            'meta_title' => 'Ayurveda Beauty',
-            'meta_description' => 'Ayurveda Beauty',
+            'meta_title'        => Config::get('seo.meta_title',        'CookBook'),
+            'meta_description'  => Config::get('seo.meta_description',  'CookBook - Content Management System'),
         );
 
         $default_og_meta = array(
-            'og_title' => 'Ayurveda Beauty',
-            'og_description' => 'Ayurveda Beauty',
-            'og_type' => 'website',
-            'og_site_name' => 'Ayurveda Beauty',
-            'og_image' => 'http://www.ayurvedabeauty.cz/img/ogLogo.jpg',
-            'og_locale' => 'cs_CZ',
+            'og_title'          => Config::get('seo.og_title',          'CookBook'),
+            'og_description'    => Config::get('seo.og_description',    'CookBook - Content Management System'),
+            'og_type'           => Config::get('seo.og_type',           'website'),
+            'og_site_name'      => Config::get('seo.og_site_name',      'CookBook'),
+            'og_image'          => Config::get('seo.og_image',          ''),
+            'og_locale'         => Config::get('seo.og_locale',         'en_US'),
         );
 
         // merge
@@ -262,7 +268,7 @@ class FrontController extends BaseController {
         // helper array
         $og_locale_arr = array(
             'cs' => 'cs_CZ',
-            'en' => 'en_EN'
+            'en' => 'en_EN',
         );
 
         if ($post){
@@ -313,6 +319,17 @@ class FrontController extends BaseController {
         return $meta_data;
     }
 
+    private function createTitle($page_title = ''){
+        $title = Config::get('seo.meta_title', 'CookBook');
+        if (!empty($page_title)){
+            $title = Config::get('seo.meta_title_prefix', 'CookBook') . $page_title;
+        }
+        return $title;
+    }
+
+    // ------------------------------------------------------------------------------------
+
+
     protected function setPageData($post = null, $params = array()){
 
         $post = ($post) ? json_decode($post->toJson()) : null;
@@ -338,15 +355,6 @@ class FrontController extends BaseController {
 
     // ------------------------------------------------------------------------------------
 
-    private function createTitle($page_title = ''){
-        $title = 'Ayurveda Beauty';
-        if (!empty($page_title)){
-            $title = 'Ayurveda Beauty - ' . $page_title;
-        }
-        return $title;
-    }
-
-    // ------------------------------------------------------------------------------------
 
     /** 
      * Wrapper function to get available locales

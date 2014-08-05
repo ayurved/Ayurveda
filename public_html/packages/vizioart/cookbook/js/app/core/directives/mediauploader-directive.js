@@ -24,7 +24,6 @@ define([
 		    
 		    compile: function(tElement, tAttrs){
 
-
 		    	return {
 					pre: function preLink(scope, iElement, iAttrs, controller) {
 						if(!iAttrs.single || iAttrs.single.toLowerCase() == 'false'){
@@ -143,6 +142,8 @@ define([
 
 		    	// done dialog function (calls $scope.doneCallback function)
 		    	$scope.done = function(){
+		    		console.log('call done();');
+		    		if ($scope.busy) return false;
 
 		    		// set directive to busy
 		    		// @TO-DO make DOM changes so some loader is shown while proccessing files
