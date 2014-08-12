@@ -43,8 +43,11 @@ define(['app'], function(App) {
 	   	 	
 	   	 	//now render
 		    App.Main.render();
-		    		    
-		    App.Navigation.render();
+		    
+		    if(App.firstInit){
+			    App.Blur.render();
+			    App.Navigation.render();
+		    }
 	   	 	
    	 	},
 		

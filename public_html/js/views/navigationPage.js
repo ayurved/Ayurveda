@@ -25,7 +25,10 @@ define(['app',
 				top = index * target.height(),
 				slide = target.data("slide");
 			
-			App.Navigation.changeBlured(slide, true);
+			var t = setTimeout(function(){
+				App.Blur.changeBlured(slide, true);
+			},10);
+			
 		
 			TweenMax.to($(".hover"), .3, { 
 	  			y: top
@@ -84,7 +87,10 @@ define(['app',
 		  	var self = this;
 			
 			self.setSizes();
-			//App.Navigation.blurImage(200);
+			
+			App.Blur.blured = false;
+			App.Blur.blurImage(200);
+			
 	  	},
 	    	    
 	    initialize: function(){

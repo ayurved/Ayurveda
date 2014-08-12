@@ -1,6 +1,6 @@
 /*
-Dock - Main View
-Copyright Kitchen S.R.O. May 2013. 
+Ayurveda - Main View
+Copyright Kitchen S.R.O. May 2014. 
 Author: Filip Arneric
 */
 
@@ -25,6 +25,7 @@ define(['app',
 	    	var self = this;    		    	
 		    App.width = $(window).width();
 		    App.height = window.innerHeight || $(window).height();
+		    
 		    if(App.view) App.view.setSizes && App.view.setSizes();
 		},	
 		       
@@ -41,17 +42,14 @@ define(['app',
 				angle = (self.view && self.view.angle) ? self.view.angle + 90 : '90';
 
 			self.$el.removeAttr("class").addClass(App.options.lang);
-			//App.Views.navigation.setActiveNav();
-			//App.Views.navigation.closeNav();
-	        //$navbar.hasClass("in") && $navbar.collapse('hide');
 			self.view && self.destroy_view();			
 			
-			App.Navigation.current = App.segments[2] || App.segments[1];  
+			App.Blur.current = App.segments[2] || App.segments[1];  
 			
 			if(App.Navigation.opened){
 				var blured = (App.segments[1] == 'massages');
 				App.Navigation.toggleNav(false,true, blured);
-				App.Navigation.blured = false;
+				App.Blur.blured = false;
 				self.define_fetch();
 			}else{
 				TweenMax.to($("#main"), .3, { 
@@ -77,7 +75,7 @@ define(['app',
 		    if(App.view.getFetchURL){
 		    	
 			  	App.Collections[App.viewName] = Backbone.Collection.extend({
-			        url: /* App.options.fetchUrl */ App.view.getFetchURL()
+			        url: App.view.getFetchURL()
 			    });	    
 			      
 			    App.view.collection = new App.Collections[App.viewName];	
@@ -103,16 +101,8 @@ define(['app',
 		  		document.title = "Ayurveda - " + App.view.dataCollection[0].meta.meta_title;
 		  	}
 		  	
-		  	//preload and render view
-		  	App.loader = new PxLoader();
-		  	
-		  	App.view.preload(function(){
-		  		App.view.render(function(){
-			  		App.view.afterRender && App.view.afterRender();
-			  		self.afterRender();
-		  		});
-		  			
-		  	});
+		  	App.view.render();
+		  	self.afterRender();
 		 
 		},
 		
@@ -137,10 +127,16 @@ define(['app',
 	    	e.preventDefault();
 	    	var self = this,
     			target = $(e.currentTarget),
-    			href = target.attr("href").replace(absurl,'');
-			_gaq.push(['_trackPageview', escape(href)]);
-        	App.Router.navigate(href, true);
-	        //App.Navigation.closeNav();	
+    			href = target.attr("href").replace(absurl,''),
+    			rootLength = Backbone.history.options.root.length,
+    			fragment = window.location.pathname.substr(rootLength - 1 );
+    		
+    		if(fragment != href){
+    			_gaq.push(['_trackPageview', escape(href)]);
+    			App.Router.navigate(href, true);
+    		}else{
+	    		App.Navigation.toggleNav();	
+    		}
         	
 	    },
 	    

@@ -37,7 +37,8 @@ require.config({
         'pxloaderimage': 'libs/pxloader/pxloaderimage',
         'pxloadervideo': 'libs/pxloader/pxloadervideo',
         'stackblur': 'libs/StackBlur',
-        'hoverDir': 'libs/jquery.hoverdir'
+        'hoverDir': 'libs/jquery.hoverdir',
+        'fastblur': 'libs/FastBlur'
     },
  
  
@@ -47,6 +48,10 @@ require.config({
             exports: 'Bootstrap'
         },
  
+ 		fastblur: {
+            deps: ['jquery']
+        },
+ 	
  		royal: {
             deps: ['jquery']
         },

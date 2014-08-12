@@ -23,6 +23,7 @@ define([
         	App.Routes = App.Setup.routes;
         	App.Translations = App.Setup.translations;
         	App.Languages = App.Setup.languages;
+        	App.Images = App.Setup.images;
         	
         	//views
         	//App.Views.page = new App.Views.Page;

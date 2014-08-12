@@ -9,12 +9,10 @@ define(['app',
 		], function(App, PxLoader, Template) {
 
 	App.Views.Blur = Backbone.View.extend({
-	
+		
 		el: '#slider',	
 		template: Handlebars.compile(Template),
 		manage: true,
-		
-		photos: ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'],
 				
 		animOptions: {
 			speed : 800, 
@@ -28,60 +26,58 @@ define(['app',
 		blured: false,
 			
 		events: {
-/* 			'click .bx-thumbs a': 'changePhoto', */
-/* 			'click #blurIt': 'blurImage' */
 		},
 		
 		preload: function(callback){
 			var self = this;
 			
-			src = absurl + '/img/blank.gif';
-			App.loader.addImage(src);
+			$.each(App.Images, function(key, value){
+				src = absurl + '/uploads/' + value.featured_image.file.url;
+				self.loader.addImage(src);
+			});
 			
-			App.loader.addCompletionListener(function() { 
+			self.loader.addCompletionListener(function() { 
 				callback();
-			})
-			
-			App.loader.start();
+			});
+						
+			self.loader.start();
 	    },
-	    
-	    getFetchURL: function(){
-			//return absurl + "/api/page/cs/dockpark";
-		},
-		
 				
 		changeBlured: function(page){
 			this.$bxContainer = $('.bx-container');	
 			var self = this,
 				$selected = self.$bxContainer.children('canvas[data-pos=' + page + ']');
+			
+			
+			/*
+TweenMax.to($('canvas').not($selected), .3, { 
+				opacity: 0,
+				onComplete: function(){
+					
+					console.log($selected);
+					$selected.show();
+					
+					TweenMax.to($selected, .3, { 
+						opacity: 1,
+						onComplete: function(){
+							
+						}
+					});
+					
+				}
+			});
+*/
+			
+			$('canvas').not($selected).stop().fadeOut(320, function(){
 				
-			$('canvas').not($selected).stop().fadeOut(620, function(){
-/* 				$(this).css("z-index",1); */
 			});
 			
-			self.current = page;
+			$selected.stop().fadeIn(320);
 			
-			$selected.stop().fadeIn(420);
+			self.current = page;
+					
 		},
 		
-		changePhoto: function(e){
-			var self = this;
-			
-			var $thumb = $(e.currentTarget),
-           		 pos = $thumb.index(),
-           		 src = $thumb.data("large");
-			
-            if( !self.isAnim && pos !== self.current) {
-					
-                self.$thumbs.removeClass('bx-thumbs-current');
-                $thumb.addClass('bx-thumbs-current');
-                self.isAnim = true;
-                
-                self.renderNewPhoto(src);			
-            }
-			
-            return false;
-		},
 		
 		getValues: function(){
 			var self = this;
@@ -95,55 +91,6 @@ define(['app',
 
 		},
 		
-		renderNewPhoto: function(src, blured){
-			var self = this,
-				next = self.current + 1;
-				
-			var $img = $('<img data-pos="'+next+'" src="'+ src +'"/>');
-			
-			$img.load(function(){
-				var $img	= $(this),
-	                dim		= self.getImageDim( $img.attr('src') ),
-	                pos		= $img.data( 'pos' );
-	             
-	            // add the canvas to the DOM
-                $.when( self.createCanvas( pos, dim, $img ) ).done( function() {  
-                    
-                  	self.centerImageCanvas($img);
-                  	
-                  	prev = pos -1;
-                  	
-                  	$bxCanvas = self.$bxContainer.children('canvas[data-pos=' + prev + ']');
-                  	$bxCanvas.css( 'z-index', 100 ).show();
-                  	
-                  	$prevImg = self.$bxContainer.children('img[data-pos=' + self.current + ']');
-                  	$prevCanvas = self.$bxContainer.children('canvas[data-pos=' + self.current + ']');
-                  	
-                  	$.when( $prevImg.fadeOut( self.animOptions.speed  ) ).done( function() {
-	                  	$.when( $img.fadeIn( self.animOptions.speed  ) ).done( function() {
-		                  	$prevImg.remove();
-		                  	$prevCanvas.remove();
-	                        self.current = pos;
-	                        self.isAnim = false;
-	                  	})
-                  	});
-                  	
-                });
-
-			});
-			
-			self.$bxContainer.append($img);
-		},
-		
-		//to be continued
-		blurIt: function(){
-			
-		},
-		
-		unblurIt: function(){
-				
-		},
-		
 		blurImage: function(speed, id){	
 			
 			this.$bxContainer = $('.bx-container');	
@@ -152,9 +99,8 @@ define(['app',
 				speed = speed || self.animOptions.speed,
 				$bxImage = self.$bxContainer.children('img[data-pos=' + current + ']'),
             	$bxCanvas = self.$bxContainer.children('canvas[data-pos=' + current + ']');
-            	
-            console.log(current);
-                        	
+            
+                     	
             // if canvas is supported
             if( self.supportCanvas ){
             	if(!self.blured){
@@ -174,27 +120,39 @@ define(['app',
 		
 		initSlider: function(){
 			
-			var self = this;
-			self.getValues();
-				
-            self.$bxImgs.each( function(i) {
-     
-                var $bximg	= $(this);
-                var g = $bximg.data("pos");
-                
-                // save the position of the image in data-pos
-                $('<img class="bxImg" data-pos="' + g + '"/>').load(function() {
-                    var $img	= $(this),
-	                    dim		= self.getImageDim( $img.attr('src') ),
-	                    pos		= $img.data( 'pos' );
+			this.getValues();
+			var self = this,
+				loaded = 0,
+				imgPercent = 100 / self.bxImgsCount;
 						
-                    // add the canvas to the DOM
-                    $.when( self.createCanvas( pos, dim, $img ) ).done( function() {
-                        self.handleResize();
-                        pos == (App.segments[2] || App.segments[1]) && $bximg.show();
-                    });
-					
-                }).attr( 'src', $bximg.attr('src') );
+            self.$bxImgs.each( function(i) {
+            
+            	var $bximg	= $(this),
+	                	pos = $bximg.data("pos"),
+	                	dim = self.getImageDim( $bximg.attr('src') );
+            	
+            /*
+	++loaded;
+            	curPercentage = imgPercent * loaded + "%";
+            	$("#loader").css("height", curPercentage);
+            	
+            	if(curPercentage == "100%"){
+	            	$("#loader").remove();
+            	}else{
+	            	console.log(curPercentage);
+            	}
+*/
+               	
+            	var t = setTimeout(function(){
+            	
+	                $.when( self.createCanvas( pos, dim, $bximg ) ).done( function() {
+	                    self.centerImageCanvas($bximg);
+	                    pos == (App.segments[2] || App.segments[1]) && $bximg.show();
+	                });
+	            	
+            	},0);
+	            	
+                
             });
 
 		},
@@ -233,6 +191,8 @@ define(['app',
                 // append the canvas to the same container where the images are
                 self.$bxContainer.append( canvas );
                 // blur it using the StackBlur script
+                
+                //boxBlurImage(pos, "cnv"+pos, 2, false, 1);             
                              
                 stackBlurImage( $img.get(0), dim, canvas, self.animOptions.blurFactor, false, dfd.resolve );
 				
@@ -276,130 +236,50 @@ define(['app',
 		centerImageCanvas: function(img){
 			var self = this;
 			
-			var $bximg	= img,
-                dim			= self.getImageDim( $bximg.attr('src') ),
-                $currCanvas	= self.$bxContainer.children('canvas[data-pos=' + $bximg.index() + ']'),
-                styleCSS	= {
+			var $bximg = img,
+                dim	= self.getImageDim( $bximg.attr('src') ),
+                pos = img.data("pos"),
+                $currCanvas	= self.$bxContainer.children('canvas[data-pos=' + pos + ']'),
+                styleCSS = {
                     width	: dim.width,
                     height	: dim.height,
                     left	: dim.left,
                     top		: dim.top
                 };	
 					
-                $bximg.css( styleCSS );
-					
-                if( self.supportCanvas )
-                    $currCanvas.css( styleCSS );
-				
-                //$bximg.show();
+            $bximg.css( styleCSS );
+            if( self.supportCanvas ) $currCanvas.css( styleCSS );
 	
 		},
 		
-		beforeRender: function(){
-			
-		},
-		
 		afterRender: function(){
-			this.initSlider();
+		  	var self = this;
+		  	
+		  	self.preload(function(){
+		  		self.initSlider();
+		  	});
+			
 		},
 		
 		serialize: function() {
 		    return {
-		      collection: '',
-		      test: 'test'
+		      images: App.Images
 		    };
 		},
 		
 		handleResize: function(){
 			var self = this;
+			
 			$(".bxImg").each(function(key, value){
                 self.centerImageCanvas($(value));
             });
 		},
 		
-		showImage: function(pos){
-			var self = this;
-			
-			// current image 
-            var $bxImage		= self.$bxImgs.eq( self.current );
-            // current canvas
-            $bxCanvas		= self.$bxContainer.children('canvas[data-pos=' + $bxImage.index() + ']'),
-            // next image to show
-            $bxNextImage	= self.$bxImgs.eq( pos ),
-            // next canvas to show
-            $bxNextCanvas	= self.$bxContainer.children('canvas[data-pos='+$bxNextImage.index()+']');
-				
-            // if canvas is supported
-            if( self.supportCanvas ) {
-				
-                $.when( self.$title.fadeOut() ).done( function() {
-                    self.$title.text( $bxNextImage.attr('title') );
-                });
-				
-                $bxCanvas.css( 'z-index', 100 ).css('visibility','visible');
-					
-                $.when( $bxImage.fadeOut( self.animOptions.speed ) ).done( function() {
-						
-                    switch( self.animOptions.variation ) {
-						
-                        case 1 	:
-                            self.$title.fadeIn( self.animOptions.speed );
-                            $.when( $bxNextImage.fadeIn( self.animOptions.speed ) ).done( function() {
-							
-                                $bxCanvas.css( 'z-index', 1 ).css('visibility','hidden');
-                                self.current = pos;
-                                $bxNextCanvas.css('visibility','hidden');
-                                self.isAnim 	= false;
-								
-                            });
-                            break;
-                        case 2	:
-                            $bxNextCanvas.css('visibility','visible');
-								
-                            $.when( $bxCanvas.fadeOut( self.animOptions.speed * 1.5 ) ).done( function() {
-								
-                                $(this).css({
-                                    'z-index' 		: 1,
-                                    'visibility'	: 'hidden'
-                                }).show();
-									
-                                $title.fadeIn( self.animOptions.speed );
-									
-                                $.when( $bxNextImage.fadeIn( self.animOptions.speed ) ).done( function() {
-										
-                                    self.current = pos;
-                                    $bxNextCanvas.css('visibility','hidden');
-                                    self.isAnim 	= false;
-									
-                                });
-									
-                            });
-                            break;
-						
-                    };
-						
-                });
-				
-            }
-            // if canvas is not shown just work with the bg images
-            else {
-					
-                $title.hide().text( $bxNextImage.attr('title') ).fadeIn( animOptions.speed );
-                $.when( $bxNextImage.css( 'z-index', 102 ).fadeIn( animOptions.speed ) ).done( function() {
-						
-                    self.current = pos;
-                    $bxImage.hide();
-                    $(this).css( 'z-index', 101 );
-                    self.isAnim = false;
-					
-                });
-				
-            }	
-		},
-		
 		initialize: function(){
 			var self = this;
-			self.render();
+			
+			self.loader = new PxLoader();
+			
 			$( window ).on('resize.BlurBGImage', function( event ) {		
                 self.handleResize();
             });

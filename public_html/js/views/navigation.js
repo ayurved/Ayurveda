@@ -11,8 +11,9 @@ define(['app',
 		], function(App, Template) {	
 	
 	//Navigation View
-	App.Views.Navigation = App.Views.Blur.extend({
+	App.Views.Navigation = Backbone.View.extend({
 		el: '#navigation',
+		manage: true,
 		template: Handlebars.compile(Template),
 		animating: false,
 		events: {
@@ -27,8 +28,10 @@ define(['app',
 				top = index * target.height(),
 				slide = target.data("slide");
 							
+			var t = setTimeout(function(){
+				App.Blur.changeBlured(slide, true);
+			},10);
 			
-			self.changeBlured(slide, true);
 						
 			TweenMax.to($(".hover"), .3, { 
 	  			y: top
@@ -65,9 +68,6 @@ define(['app',
 		                lang: App.options.locale
 		            });
 		            
-		            
-		            console.log(self.data);
-		            
 		        	self.$el.html(self.content);   	
 		        	self.afterRender();
 		        	//self.openNav();
@@ -78,23 +78,6 @@ define(['app',
 		    
 	    },	
 	   
-	    
-/*
-	    closeNav: function(){
-		  	  var self = this;
-	  			target = $('.nav-button'),
-	  			$container = self.$('#navigation-container');
-	  		
-	  		$container.stop().fadeToggle(300, function(){
-		  		self.animating = false;
-	  		});
-	  		
-	  		target.toggleClass("close-nav");
-	  		self.blurImage(200);
-	  		self.tlShowMenuLinks.reverse();
-	  		TweenMax.to($("#main"), .3, { opacity: 1 });
-	    },
-*/
 
 	  	toggleNav: function(e, changePage, blur) {
 	  		var self = this;
@@ -102,11 +85,18 @@ define(['app',
 	  			$container = self.$('#navigation-container'),
 	  			op = target.hasClass("close-nav") ? 0 : 1;
 	  		
+	  		//console.log("b",blur);
+	  		//App.Blur.blured = !blur;
+	  		
 	  		if(!self.animating){
 	  			self.animating = true;
 			  	target.toggleClass("close-nav");
-			  	
-		  		!blur && self.blurImage(200);
+			  			  			  	
+			  	console.log("blured",App.Blur.blured);		  			  	
+			  			  			  	
+		  		(!blur && App.options.view!='navigationPage') && App.Blur.blurImage(200);
+		  		
+		  		
 		  		
 		  		$container.stop().fadeToggle(300, function(){
 			  		self.animating = false;
@@ -128,10 +118,6 @@ define(['app',
 
 	  	},
 	  	
-	  	beforeRender: function(){
-		  	
-	  	},
-	  	
 	  	afterRender: function(){
 		  	var self = this;
 
@@ -151,10 +137,7 @@ define(['app',
 	    	    
 	    initialize: function(){
 	    	var self = this;	
-	    	/* self.afterRender(); */
-	    	
-	    	//self.render();
-   		     					
+
 	    }
 	    
 	});

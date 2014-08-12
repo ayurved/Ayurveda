@@ -8773,32 +8773,32 @@ a, a:focus {
 
 /* line 196, ../../sass/master/main.scss */
 .padding {
-  padding: 14%;
+  padding: 16%;
 }
 
 /* line 200, ../../sass/master/main.scss */
 .margin {
-  margin: 14%;
+  margin: 16%;
 }
 
 /* line 204, ../../sass/master/main.scss */
 .halfPadding {
-  padding: 7%;
+  padding: 8%;
 }
 
 /* line 208, ../../sass/master/main.scss */
 .halfMargin {
-  margin: 4.66667% 7%;
+  margin: 5.33333% 8%;
 }
 
 /* line 212, ../../sass/master/main.scss */
 .halfPadding {
-  padding: 7%;
+  padding: 8%;
 }
 @media (max-width: 767px) {
   /* line 212, ../../sass/master/main.scss */
   .halfPadding {
-    padding: 14% !important;
+    padding: 16% !important;
   }
 }
 
