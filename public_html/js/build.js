@@ -12,16 +12,12 @@
         "imagesLoaded": "libs/jquery.imagesloaded",
         'bootstrap': 'vendor/sass-bootstrap.min',
         'smartresize': 'libs/smartresize',
-        'datatables': 'libs/jquery.dataTables',
         'tweenmax': "libs/TweenMax.min",
-        'gsap': "libs/jquery.gsap.min",
-        
+        'gsap': "libs/jquery.gsap.min",        
         'imgLiquid' : 'libs/imgLiquid-min',
         'modernizr' : 'vendor/modernizr',
         'backstretch' : 'libs/jquery.backstretch.min',
         'nicescroll' : 'libs/jquery.nicescroll.min',
-        'royal' : 'libs/jquery.royalslider.min',
-        'easing' : 'libs/masterslider/jquery.easing.min',
         'fittext' : 'libs/jquery.fittext',
         'fastclick': 'libs/fastclick',
         'pxloader': 'libs/pxloader/pxloader',
@@ -29,7 +25,8 @@
         'pxloaderimage': 'libs/pxloader/pxloaderimage',
         'pxloadervideo': 'libs/pxloader/pxloadervideo',
         'stackblur': 'libs/StackBlur',
-        'hoverDir': 'libs/jquery.hoverdir'
+        'hoverDir': 'libs/jquery.hoverdir',
+        'fastblur': 'libs/FastBlur'
     },
     name: "load",
     preserveLicenseComments: false,

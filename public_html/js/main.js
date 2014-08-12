@@ -109,7 +109,6 @@ define(['app',
 		afterRender: function(){
 			var self = this;
 			
-			App.firstInit = false;	
 			$("#main").show();
 			App.Common.fittext();
 			//Delegate events
@@ -117,10 +116,18 @@ define(['app',
 			App.Common.delegateEvents();	
 			FastClick.attach(document.body);
 			
+			if(App.firstInit){
+			    App.Blur.render();
+		    }
+			
+			var dur = App.firstInit ? 0 : 0.3;
+			
 			var t = setTimeout(function(){
-				TweenMax.to($("#main"), .3, { opacity: 1 });
-			},400);
+				TweenMax.to($("#main"), dur, { opacity: 1 });
+			},dur * 100);
 	  		
+	  		
+	  		App.firstInit = false;
 		},
 	  		    
 	    changeRoute: function(e) {

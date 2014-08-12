@@ -45,9 +45,9 @@ define(['app'], function(App) {
 		    App.Main.render();
 		    
 		    if(App.firstInit){
-			    App.Blur.render();
 			    App.Navigation.render();
 		    }
+
 	   	 	
    	 	},
 		

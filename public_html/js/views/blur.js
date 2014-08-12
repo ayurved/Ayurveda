@@ -106,8 +106,8 @@ define(['app',
             self.$bxImgs.each( function(i) {
             
             	var $bximg	= $(this),
-	                	pos = $bximg.data("pos"),
-	                	dim = self.getImageDim( $bximg.attr('src') );
+	                pos = $bximg.data("pos"),
+	                dim = self.getImageDim( $bximg.attr('src') );
             	          	
             	var t = setTimeout(function(){
             	
@@ -134,7 +134,6 @@ define(['app',
                     return false;
                 }
                 
-                console.log("dfd",dfd);
 					
                 // create the canvas element:
                 // size and position will be the same like the fullscreen image
@@ -222,9 +221,17 @@ define(['app',
 		afterRender: function(){
 		  	var self = this;
 		  	
+		  	var id = App.segments[2] || App.segments[1];
+		  	
+		  	var $img = $("#"+id);
+		  	
+		  	$img.show();
+		  	
 		  	self.preload(function(){
 		  		$("#loader").remove();
-		  		self.initSlider();
+		  		var t = setTimeout(function(){
+			  		self.initSlider();
+		  		},500);
 		  	});
 			
 		},

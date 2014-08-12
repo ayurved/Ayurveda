@@ -83,7 +83,7 @@ define(['app',
 		
 	  	afterRender: function(){
 		  	var self = this;
-
+		  	
 			self.setSizes();
 		
 			var t = setTimeout(function(){
