@@ -29,7 +29,7 @@ Filip Arneric
 		<!-- Open graph tags -->
 		<meta property="og:title" content="{{$og_title}}"/>
 		<meta property="og:type" content="website" />
-		<meta property="og:site_name" content="Dock"/>
+		<meta property="og:site_name" content="Ayurveda Beauty"/>
 		<meta property="og:description" content="{{$og_description}}">
 		<meta property="og:image" content="{{$og_image}}">
 		<meta property="og:locale" content="{{$og_locale}}" />

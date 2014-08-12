@@ -17,7 +17,7 @@ define(['app',
 		animOptions: {
 			speed : 800, 
 			variation : 1, 
-			blurFactor : 20,
+			blurFactor : 15,
 		},
 		
 		isAnim: false,
@@ -48,34 +48,12 @@ define(['app',
 			var self = this,
 				$selected = self.$bxContainer.children('canvas[data-pos=' + page + ']');
 			
-			
-			/*
-TweenMax.to($('canvas').not($selected), .3, { 
-				opacity: 0,
-				onComplete: function(){
-					
-					console.log($selected);
-					$selected.show();
-					
-					TweenMax.to($selected, .3, { 
-						opacity: 1,
-						onComplete: function(){
-							
-						}
-					});
-					
-				}
-			});
-*/
-			
-			$('canvas').not($selected).stop().fadeOut(320, function(){
-				
+			$('canvas').not($selected).stop().fadeOut(320, function(){				
 			});
 			
 			$selected.stop().fadeIn(320);
 			
-			self.current = page;
-					
+			self.current = page;					
 		},
 		
 		
@@ -130,19 +108,7 @@ TweenMax.to($('canvas').not($selected), .3, {
             	var $bximg	= $(this),
 	                	pos = $bximg.data("pos"),
 	                	dim = self.getImageDim( $bximg.attr('src') );
-            	
-            /*
-	++loaded;
-            	curPercentage = imgPercent * loaded + "%";
-            	$("#loader").css("height", curPercentage);
-            	
-            	if(curPercentage == "100%"){
-	            	$("#loader").remove();
-            	}else{
-	            	console.log(curPercentage);
-            	}
-*/
-               	
+            	          	
             	var t = setTimeout(function(){
             	
 	                $.when( self.createCanvas( pos, dim, $bximg ) ).done( function() {
@@ -166,7 +132,9 @@ TweenMax.to($('canvas').not($selected), .3, {
                 if( !self.supportCanvas ) {
                     dfd.resolve();
                     return false;
-                }	
+                }
+                
+                console.log("dfd",dfd);
 					
                 // create the canvas element:
                 // size and position will be the same like the fullscreen image
@@ -175,8 +143,7 @@ TweenMax.to($('canvas').not($selected), .3, {
 	                imgH	= dim.height,
 	                imgL	= dim.left,
 	                imgT	= dim.top,
-						
-                canvas	= document.createElement('canvas');
+				    canvas	= document.createElement('canvas');
 					
                 canvas.className	= 'bx-canvas';
                 canvas.width 		= imgW;
@@ -256,6 +223,7 @@ TweenMax.to($('canvas').not($selected), .3, {
 		  	var self = this;
 		  	
 		  	self.preload(function(){
+		  		$("#loader").remove();
 		  		self.initSlider();
 		  	});
 			

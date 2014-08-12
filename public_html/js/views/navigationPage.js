@@ -27,9 +27,8 @@ define(['app',
 			
 			var t = setTimeout(function(){
 				App.Blur.changeBlured(slide, true);
-			},10);
-			
-		
+			},0);
+				
 			TweenMax.to($(".hover"), .3, { 
 	  			y: top
 	  		});	

@@ -71,6 +71,7 @@ html, body {
 	-moz-font-smoothing: antialiased;
 	-o-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+	background: $purple;
 /* 	background: $gold; */
 }
 
@@ -83,7 +84,6 @@ html, body {
 	opacity: 0;
 }
 
-/*
 #loader{
 	background: $purple url(../img/loader.gif) no-repeat center center;
 	position: fixed;
@@ -93,7 +93,6 @@ html, body {
 	height:100%;
 	z-index: 9999999999;
 }
-*/
 
 .bold{
 	font-weight: bolder;
