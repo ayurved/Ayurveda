@@ -77,10 +77,9 @@ define(['app',
 				speed = speed || self.animOptions.speed,
 				$bxImage = self.$bxContainer.children('img[data-pos=' + current + ']'),
             	$bxCanvas = self.$bxContainer.children('canvas[data-pos=' + current + ']');
-            
                      	
             // if canvas is supported
-            if( self.supportCanvas ){
+            if( self.supportCanvas && $bxCanvas.length){
             	if(!self.blured){
 		            $bxCanvas.css( 'z-index', 100 ).show();
 	                self.$bxContainer.children('img').stop().fadeOut( speed );
